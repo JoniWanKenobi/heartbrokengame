@@ -10,8 +10,18 @@ html {
  
 /* ---- typography ---- */
  
-body {}
- 
+body {
+  margin: 0;
+}
+
+a{
+  color: inherit;
+}
+
+a:hover{
+  color: inherit;
+}
+
 h1 {}
  
 h2 {}
@@ -19,7 +29,133 @@ h2 {}
 h3 {}
  
 /* ---- layout ---- */
+
+/* .navbar-container{
+  display: flex;
+} */
+
+.navbar{
+  background-color: whitesmoke;
+  border-bottom: 0.5px solid lightgrey;
+}
+
+.navbar img{
+  height: 5vh;
+}
+
+.navbar-brand{
+  color: red;
+}
+
+.wrapper{
  
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.main{
+  /* height: 40vw; */
+  padding: 10vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.puzzle{
+  overflow: hidden;
+}
+
+.card-body{
+  width: 400px;
+}
+
+.drop{
+  float: left;
+  height: 60px;
+  width: 60px;
+  border: 1px solid lightgrey;
+  border-radius: 10%; 10%;
+}
+
+.board{
+  clear: both;
+  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.pat{
+  
+}
+
+.card-footer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.pieces{
+  flex: 1 0 40;
+  /* border: 1px solid black; */
+  /* height: 80px; */
+}
+
+.piece{
+  height: 55px;
+  width: 55px;
+  border: 2px solid lightgray;
+  margin: 0 auto;
+  border-radius: 5%; 5%;
+}
+
+.jigsaw-img{
+  background-image:url(../images/bansky-heart.jpg);
+}
+
+.piece1{
+  background-position: 0 0;
+}
+
+
+
+.footer{
+  padding-top: 5vh;
+  border-top: 1px solid lightgray;
+  background-color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.footer-wrapper{
+  display: flex;
+  justify-content: center;
+}
+
+.footer-logo{
+  height: 40px;
+}
+
+.footer-element{
+  margin-left: 10px;
+}
+
+.footer-element img{
+  height: 40px;
+  color: blueviolet;
+}
+
+/* .fa-heart {
+  color:#E4287C;
+} */
+.fa-bolt {
+  top:-5%;
+  left:2%;
+  font-size:70%;
+}
+
 #site-header {}
  
 #site-footer {}
@@ -30,3 +166,30 @@ h3 {}
  
  
 /* ---- components ---- */
+
+
+
+.gu-mirror {
+  position: fixed !important;
+  margin: 0 !important;
+  z-index: 9999 !important;
+  opacity: 0.8;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
+}
+.gu-hide {
+  display: none !important;
+}
+.gu-unselectable {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+}
+.gu-transit {
+  opacity: 0.2;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+  filter: alpha(opacity=20);
+}
+
+

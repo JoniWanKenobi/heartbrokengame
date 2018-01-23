@@ -2,43 +2,40 @@
 
 function main(){
 
+    var splashHTML ='<div class=\"container\"><div class=\"wrapper\"><div class=\"img-block\"><img src=\"../src/images/SplashHeart.png\" alt=\"\"></div><div class=\"text-block\"><h2>Get yourself back together</h2><h4>One piece at the time</h4><button id=\"start-btn\" class=\"start-btn btn btn-outline-danger\">Start</button></div></div></div>'
+    var splashElement = createElementFromHTML(splashHTML);
     var title = document.querySelector('h1');
     var app = document.querySelector('#app');  
     var stage;
     var game;
+    var PUZZLE_SIZE = 36;
 
       
     // -- SPLASH
-  
-    var splashElement;
-    var startGameButton;
+    
+    var startBtn;
     var handleStartClick = function () {
       destroySplash();
       buildGame();
     };
+
+    function createElementFromHTML(htmlString) {
+        var div = document.createElement('div');
+        div.innerHTML = htmlString.trim();
+      
+        // Change this to div.childNodes to support multiple top-level nodes
+        return div.firstChild; 
+    }
   
     function buildSplash() {
       stage = 'splash';
-  
-      // create dom elements
-      splashElement = document.createElement('div');
-      splashElement.setAttribute('id', 'splash');
-      splashElement.appendChild(title);
-      startGameButton = document.createElement('button');
-      startGameButton.innerText = 'start';
-      splashElement.appendChild(startGameButton);
-      title.innerText = 'This is the splash';  
-      // apppend to app
       app.appendChild(splashElement);
-  
-      // bind click on start play button
-      startGameButton.addEventListener('click', handleStartClick);
+      startBtn = document.querySelector('#start-btn');
+      startBtn.addEventListener('click', handleStartClick);
     }
   
     function destroySplash() {
-      // unbind click on start play button
-      startGameButton.removeEventListener('click', handleStartClick);
-      // remove splash from dom
+      startBtn.removeEventListener('click', handleStartClick);
       splashElement.remove();
     }
   
@@ -46,14 +43,12 @@ function main(){
   
     function buildGame() {
       stage = 'game';
-      game = new Game(app);
-      title.innerText = 'This is the game';
-      title.innerText = 'This is the splash';
-  
-      window.setTimeout(function () {
-        destroyGame();
-        buildGameOver();
-      }, 5000);
+      game = new Game(app, createElementFromHTML, PUZZLE_SIZE);  
+      game.build();
+    //   window.setTimeout(function () {
+    //     destroyGame();
+    //     buildGameOver();
+    //   }, 5000);
     }
   
     function destroyGame() {

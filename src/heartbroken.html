@@ -2,17 +2,52 @@
 <html lang='en'>
  
 <head>
-    <title>Hello, world!</title>
+    <title>An app for broken hearts</title>
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel='stylesheet' href='./css/style.css'>
+    <script src="https://use.fontawesome.com/f22f21b6f3.js"></script>
 </head>
  
 <body>
-    <h1>Hello World</h1>
-    <div id="app"></div>
-    <script src="./js/game.js"></script>
-    <script src="./js/main.js"></script>
-    
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <div class="container navbar-container">
+        <a class="navbar-brand" href="#">Heartbroken<img src="../src/images/SplashHeart.png" alt=""></a>         
+        </div>     
+    </div>
+
+    <!-- APP -->
+        <div id="app" class="main container"></div>
+
+    <!-- FOOTER     -->
+        <div class="footer text-muted">    
+            <div class="container footer-wrapper">               
+                   <p>
+                       <span class="footer-element"><em>Coded with</em>
+                            <span class="fa-stack fa-1x">
+                                <i class="fa fa-heart fa-stack-1x"></i>
+                                <i class="fa fa-bolt fa-stack-1x fa-inverse"></i>
+                            </span>
+                       </span>
+                       <span class="footer-element"><em>by</em></span>
+                       <span class="footer-element"><i class="fa fa-github"></i></span>
+                       <a href="https://github.com/JoniWanKenobi" target="_blank"><strong>JoniWanKenobi</strong></a>                       
+                        <span class="footer-element">
+                            <i class="fa fa-at fa-1x"></i>
+                        </span>
+                        <span class="footer-element"><img class="footer-logo" src="../src/images/ironhackLogo.jpg"></span>
+                        Ironhack Barcelona
+                    </p>              
+            </div>     
+        </div>
+
+    <!-- SCRIPTS -->
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.js'></script>
+        
+        <script src="./js/game.js"></script>
+        <script src="./js/main.js"></script>        
 </body>
+
+
