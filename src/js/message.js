@@ -1,19 +1,30 @@
 'use strict';
 
-function Message(){
+function CheerUpMessage(name, gender, city, message, rating, author){
+    var self = this;
+    self.name = name;
+    self.gender = gender;
+    self.city = city;
+    self.message = message;
+    self.rating = rating;
+    self.author = author;
+}
+
+function Message(cardElement, createFunction){
     var self = this;
 
     //Baseline DOM elements
+    self.cardElement = cardElement;
     self.boardCardBodyElement = createFunction('<div class="card-body"></div>');
     
     //Data
     self.messagesArray = [];
     self.defaultData = {
-        messages: [['Sheng', 'M', 'Alicante', 'Never allow someone to be your priority while allowing yourself to be their option.', 5],
-                    ['Josep', 'M', 'Barcelona', 'An invisible red thread connects those who are destined to meet, regardless of time, place, or circumstance. The thread may stretch or tangle, but will never break.', 3, 'ancient Chinese Proverb'],
+        messages: [['Sheng', 'M', 'Alicante', 'Never allow someone to be your priority while allowing yourself to be their option.', 5,''],
+                    ['Josep', 'M', 'Barcelona', 'An invisible red thread connects those who are destined to meet, regardless of time, place, or circumstance. The thread may stretch or tangle, but will never break.', 3, 'Ancient Chinese Proverb'],
                     ['Andrea', 'M', 'Lisbon', 'What matters in life is not to predict the dangers of travels; is to have them made.', 4, 'Agostinho da Silva'],
-                    ['Stephanie', 'F', 'Innsbruck', 'Everything is going to be ok in the end, if it\'s not okay it\'s not the end', 5 ],
-                    ['Stephanie', 'F', 'Innsbruck', 'f you are brave enough to say goodbye, life will reward you with a new hello', 5 ]
+                    ['Stephanie', 'F', 'Innsbruck', 'Everything is going to be ok in the end, if it\'s not okay it\'s not the end', 5, '' ],
+                    ['Stephanie', 'F', 'Innsbruck', 'f you are brave enough to say goodbye, life will reward you with a new hello', 5, '' ]]
     };
 
     self.createMessagesArray(self.defaultData.messages);
@@ -23,8 +34,11 @@ function Message(){
 Message.prototype.createMessagesArray = function(arr){
     var self = this;
 
+    // var message = new CheerUpMessage('Giovanni')
+    // self.messagesArray.push(message);
+
     arr.forEach(function(element){
-        var message = new CheerUpMessage.apply(null, element);
+        var message = new CheerUpMessage(element[0], element[1], element[2], element[3], element[4], element[5], element[6]);
         self.messagesArray.push(message);
     });
 
@@ -55,7 +69,7 @@ Message.prototype.slectIconElement = function(message){
 
 
 
-Message.prototype.newCardBody = function(){
+Message.prototype.nextCardBody = function(){
     var self = this;
     var message = self.messagesArray.shift(); //Gets due message form the array
     self.clearCardBody(); //Removes previous elements if present
@@ -90,17 +104,11 @@ Message.prototype.newCardBody = function(){
     self.boardCardBodyElement.appendChild(cardTitleElement);
     self.boardCardBodyElement.appendChild(cardSubtitleElement);
     self.boardCardBodyElement.appendChild(quoteElement);
+
+    self.cardElement.appendChild(self.boardCardBodyElement);
 }
 
-function CheerUpMessage(name, gender, city, message, rating, author){
-    var self = this;
-    self.name = name;
-    self.gender = gender;
-    self.city = city;
-    self.message = message;
-    self.rating = rating;
-    self.author = author;
-}
+
 
 // HTML Snippet
 

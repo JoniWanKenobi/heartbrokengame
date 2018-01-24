@@ -30,7 +30,7 @@ Game.prototype.build = function(){
   //   self.wrapperElement.appendChild(self.puzzleCardElement);
   //   self.wrapperElement.appendChild(self.boardElement);
     app.appendChild(self.wrapperElement);
-    dragula([document.getElementById("el-1"), document.getElementById("drop-1")].on('drop', self.getTurn), {revertOnSpill: true});
+    dragula([document.getElementById("el-1"), document.getElementById("drop-1")], {revertOnSpill: true});
 }  
 
 
