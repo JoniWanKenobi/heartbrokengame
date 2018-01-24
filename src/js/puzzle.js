@@ -1,3 +1,5 @@
+'use strict'
+
 function Puzzle(createFunction, puzzleSize){
     var self = this;
     self.puzzleSize = puzzleSize;
@@ -8,7 +10,7 @@ function Puzzle(createFunction, puzzleSize){
 }
 
 
-Puzzle.prototype.makePuzzle = function(){
+Puzzle.prototype.buildElement = function(){
     var self = this;
     for(var i=1; i<=self.puzzleSize; i++){
         var cellElement = document.createElement('div');

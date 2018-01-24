@@ -13,7 +13,7 @@ function Game(app, createFunction, puzzleSize, puzzleWidth, imageURL) {
     self.rowLength = puzzleWidth/self.cellWidth;   
     self.imageURL = imageURL;
 
-    //Baseline DOME elements
+    //Baseline DOM elements
     self.app = app;
     self.wrapperElement = createFunction('<div class="wrapper"></div>');   
       
@@ -23,7 +23,10 @@ function Game(app, createFunction, puzzleSize, puzzleWidth, imageURL) {
 Game.prototype.build = function(){
     var self = this;
     var puzzleElement = self.buildPuzzle();
+    var boardElement = self.buildBoard();
+    
     self.wrapperElement.appendChild(puzzleElement);
+    self.wrapperElement.appendChild(boardElement);
   //   self.wrapperElement.appendChild(self.puzzleCardElement);
   //   self.wrapperElement.appendChild(self.boardElement);
     app.appendChild(self.wrapperElement);
@@ -34,7 +37,13 @@ Game.prototype.build = function(){
 Game.prototype.buildPuzzle = function(){
     var self = this;
     var puzzle = new Puzzle(self.createFunction, self.puzzleSize);
-    return puzzle.makePuzzle(); //Returns a puzzle grid
+    return puzzle.buildElement(); //Returns a puzzle grid
+}
+
+Game.prototype.buildBoard = function(){
+    var self = this;
+    var board = new Board(self.createFunction)
+    return board.buildElement();
 }
 
 
