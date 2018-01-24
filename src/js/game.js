@@ -1,28 +1,27 @@
 'use strict';
 
-function Game(app, createFunction, puzzleSize, puzzleWidth) {
+function Game(app, createFunction, puzzleSize, puzzleWidth, imageURL) {
     var self = this;
+    //State
+    self.finished = false;
+
+    //Puzzle set-up, get your pixels straight!!
     self.puzzleSize = puzzleSize;
-    self.cellWidth = puzzleWidth/6;    
+    self.cellWidth = Math.sqrt(Math.pow(puzzleWidth)/puzzleSize); 
+    self.rowLength = puzzleWidth/self.cellWidth;   
+    self.imageURL = imageURL;
+
+    //Baseline DOME elements
+    self.app = app;
     self.wrapperElement = createFunction('<div class="wrapper"></div>');
     self.puzzleCardElement = createFunction('<div class="puzzle card"></div>');
-    self.cardBodyElement = createFunction('<div class="card-body"></div>');    
-    self.boardHTML ='<div class="board">\
-                        <div class="pat">\
-                            <div class="card">\
-                                <div class="card-body">\
-                                    <h5 class="card-title"><img src="../src/images/user.svg" alt=""> Joni Wan</h5>\
-                                    <h6 class="card-subtitle mb-2 text-muted">Barcelona</h6>\
-                                    <div class="blockquote">\
-                                        <p class="card-text">If you love someone, set them free. If they come back they\'re yours; if they don\'t they never were.</p></div></div><div class="card-footer">\
-                                    <div class="pieces">\
-                                        <div id="el-1"><div class="jigsaw-img piece piece1"></div></div></div>\
-                                </div>\
-                            </div>\
-                        </div></div>';
-    self.boardElement = createFunction(self.boardHTML);
-    self.app = app;  
-    self.finished = false;
+    self.cardBodyElement = createFunction('<div class="card-body"></div>'); 
+    self.boardElement = createFunction('<div class="board"></div>');
+    self.patElement = createFunction('<div class="pat"></div>');
+    self.cardElement = createFunction('<div class="card"></div>');
+    self.boardCardBodyElement = createFunction('<div class="card-body"></div>');   
+    
+    //Data
     self.defaultData = {
         messages: [['Sheng', 'M', 'Alicante', 'Never allow someone to be your priority while allowing yourself to be their option.', 5],
                     ['Josep', 'M', 'Barcelona', 'An invisible red thread connects those who are destined to meet, regardless of time, place, or circumstance. The thread may stretch or tangle, but will never break.', 3, 'ancient Chinese Proverb'],
@@ -34,7 +33,7 @@ function Game(app, createFunction, puzzleSize, puzzleWidth) {
     self.pieces = [];
 
     self.createMessagesArray(self.defaultData.messages);    
-    self.createPiecesArray(self.puzzleSize, self.cellWidth);  
+    self.createPiecesArray(self.puzzleWidth, self.cellWidth);  
 }
 
 
@@ -49,8 +48,9 @@ function Game(app, createFunction, puzzleSize, puzzleWidth) {
         });
     };
 
-    Game.prototype.createPiecesArray = function(){
+    Game.prototype.createPiecesArray = function(puzzleSize, cellSize){
         var self = this;
+
     }
   
   Game.prototype.makePuzzle = function(){
@@ -85,3 +85,20 @@ function Game(app, createFunction, puzzleSize, puzzleWidth) {
     self.finished = true;
     self.wrapperElement.remove();
   };
+
+
+
+
+//   '<div class="board">\
+//     <div class="pat">\
+//         <div class="card">\
+//             <div class="card-body">\
+//                 <h5 class="card-title"><img src="../src/images/user.svg" alt=""> Joni Wan</h5>\
+//                 <h6 class="card-subtitle mb-2 text-muted">Barcelona</h6>\
+//                 <div class="blockquote">\
+//                     <p class="card-text">If you love someone, set them free. If they come back they\'re yours; if they don\'t they never were.</p></div></div><div class="card-footer">\
+//                 <div class="pieces">\
+//                     <div id="el-1"><div class="jigsaw-img piece piece1"></div></div></div>\
+//             </div>\
+//         </div>\
+//     </div></div>'

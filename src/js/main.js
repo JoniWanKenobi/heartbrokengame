@@ -9,7 +9,9 @@ function main(){
     var stage;
     var game;
     var PUZZLE_SIZE = 36;
-
+    var PUZZLE_WIDTH = 360;
+    var IMAGE_NAME = 'bansky-heart.jpg';
+    var imageURL = './src/images/'+IMAGE_NAME;
       
     // -- SPLASH
     
@@ -43,7 +45,7 @@ function main(){
   
     function buildGame() {
       stage = 'game';
-      game = new Game(app, createElementFromHTML, PUZZLE_SIZE);  
+      game = new Game(app, createElementFromHTML, PUZZLE_SIZE, PUZZLE_WIDTH, imageURL);  
       game.build();
     //   window.setTimeout(function () {
     //     destroyGame();
