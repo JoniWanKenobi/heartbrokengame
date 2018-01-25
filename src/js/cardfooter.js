@@ -5,7 +5,9 @@ function CardFooter(cardElement, createFunction, puzzleWidth, cellWidth, rowLeng
     self.cellWidth = 60;
     self.rowLength = rowLength;
     self.createFunction = createFunction;    
-    self.pieces = self.createPiecesArray();    
+    self.pieces = self.createPiecesArray();   
+    self.pieceNumber = 0;
+
     
     //DOM elements
     self.cardElement = cardElement;      
@@ -17,6 +19,8 @@ function CardFooter(cardElement, createFunction, puzzleWidth, cellWidth, rowLeng
 CardFooter.prototype.mountCardFooter = function(){
     var self = this;    
     var pieceElement = self.pieces.shift();
+    var elementId = pieceElement.id;
+    self.pieceNumber = Number(elementId.split('-')[1]);
     var cardFooterElement = self.createFunction('<div class="card-footer"></div>');
     var piecesElement = self.createFunction('<div class="pieces"></div>');
     piecesElement.appendChild(pieceElement);
@@ -64,18 +68,17 @@ CardFooter.prototype.createPiecesArray = function(){
         }
     }    
 
-    // return self.shuffle(arr);
-    return arr;
+    return self.shuffle(arr);
+    // return arr;
 }
 
 
-CardFooter.prototype.shuffle = function (cardsArr) {
-    var self = this;
-    var copyArr = cardsArr.slice();
+CardFooter.prototype.shuffle = function (ar) {
+    // var copyArr = arr.slice();
     var shuffledArr = [];
-    while(copyArr.length>0){
-        var ranNum = Math.floor(Math.random() * copyArr.length);
-        var el = copyArr.splice(ranNum,1)[0];
+    while(ar.length>0){
+        var ranNum = Math.floor(Math.random() * ar.length);
+        var el = ar.splice(ranNum,1)[0];
         shuffledArr.push(el);
     }
 

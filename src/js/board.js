@@ -36,11 +36,13 @@ Board.prototype.mount = function(){
     var refresh = function(){
         cardBody.refreshMessage();
         cardFooter.refreshCardFooter();
-        dragula([document.getElementById("el-"+ counter), document.getElementById("drop-"+ counter)], {revertOnSpill: true}).on('drop',refresh)
+        var num = cardFooter.pieceNumber;
+        dragula([document.getElementById("el-"+ num), document.getElementById("drop-"+ num)], {revertOnSpill: true}).on('drop',refresh);
         counter ++;
     };  
     
-    dragula([document.getElementById("el-1"), document.getElementById("drop-1")], {revertOnSpill: true}).on('drop',refresh)
+    var num = cardFooter.pieceNumber;
+    dragula([document.getElementById("el-"+ num), document.getElementById("drop-"+ num)], {revertOnSpill: true}).on('drop',refresh)
     
 }
 
