@@ -64,7 +64,7 @@ Message.prototype.mountCardBody = function(){
 Message.prototype.refreshMessage = function(){
     var self = this;
     self.removeItself();
-    self.nextCardBody();
+    self.mountCardBody();
 }
 
 Message.prototype.removeItself = function(){

@@ -25,7 +25,12 @@ Board.prototype.buildElement = function(){
     console.log(cardFooter.pieces);
     self.patElement.appendChild(self.cardElement);
     self.boardElement.appendChild(self.patElement);
-    self.nextButton.addEventListener('click', cardBody.refreshMessage.bind(cardBody));
+    var refresh = function(){
+        cardBody.refreshMessage();
+        cardFooter.refreshCardFooter();
+        // footerRefresh();
+    };
+    self.nextButton.addEventListener('click', refresh);
     self.boardElement.appendChild(self.nextButton);
     
     return self.boardElement;

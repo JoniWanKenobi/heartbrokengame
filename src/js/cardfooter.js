@@ -4,23 +4,39 @@ function CardFooter(cardElement, createFunction, puzzleWidth, cellWidth, rowLeng
     self.puzzleWidth = 360;
     self.cellWidth = 60;
     self.rowLength = rowLength;
+    self.createFunction = createFunction;
     // self.totalCells = (self.puzzleWidth/self.cellWidth)** don't need this because looping will give me 36 elements anyway
     self.pieces = self.createPiecesArray();        
     
     
     //DOM elements
     self.cardElement = cardElement;
-    self.cardFooterElement = createFunction('<div class="card-footer"></div>');
-    self.piecesElement = createFunction('<div class="pieces"></div>');
+    
 }
 
 
 CardFooter.prototype.mountCardFooter = function(){
     var self = this;
     var pieceElement = self.pieces.shift();
-    self.piecesElement.appendChild(pieceElement);
-    self.cardFooterElement.appendChild(self.piecesElement);
-    self.cardElement.appendChild(self.cardFooterElement);
+    var cardFooterElement = self.createFunction('<div class="card-footer"></div>');
+    var piecesElement = self.createFunction('<div class="pieces"></div>');
+    piecesElement.appendChild(pieceElement);
+    cardFooterElement.appendChild(piecesElement);
+    self.cardElement.appendChild(cardFooterElement);
+}
+
+CardFooter.prototype.refreshCardFooter = function(){
+    var self = this;
+    self.removeItself();
+    self.mountCardFooter();
+}
+
+CardFooter.prototype.removeItself = function(){
+    var self = this;
+    console.log(self);
+    var footer = self.cardElement.querySelector('.card-footer');
+    console.log(footer);
+    footer.remove();
 }
 
 CardFooter.prototype.createPiece = function(i,j, id){
