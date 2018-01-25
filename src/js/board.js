@@ -6,7 +6,7 @@ function Board(wrapperElement, createFunction, puzzleWidth, cellWidth, rowLength
     self.rowLength =rowLength;
 
     //Baseline DOM elements
-    self.boardElement = createFunction('<div class="board"></div>');
+    
     self.patElement = createFunction('<div class="pat"></div>');
     self.cardElement = createFunction('<div class="card"></div>'); 
     self.wrapperElement = wrapperElement;
@@ -19,7 +19,10 @@ function Board(wrapperElement, createFunction, puzzleWidth, cellWidth, rowLength
 
 Board.prototype.mount = function(){
     var self = this;
-        
+    var counter = 2;
+    
+    var boardElement = self.createFunction('<div class="board"></div>');
+    
     var cardBody = new Message(self.cardElement, self.createFunction);
     cardBody.mountCardBody();
 
@@ -27,19 +30,21 @@ Board.prototype.mount = function(){
     cardFooter.mountCardFooter();
 
     self.patElement.appendChild(self.cardElement);
-    self.boardElement.appendChild(self.patElement);
-    self.wrapperElement.appendChild(self.boardElement);
+    boardElement.appendChild(self.patElement);
+    self.wrapperElement.appendChild(boardElement);
 
     var refresh = function(){
         cardBody.refreshMessage();
         cardFooter.refreshCardFooter();
-    };
-
-    // self.nextButton.addEventListener('click', refresh);
-    // self.boardElement.appendChild(self.nextButton);
+        dragula([document.getElementById("el-"+ counter), document.getElementById("drop-"+ counter)], {revertOnSpill: true}).on('drop',refresh)
+        counter ++;
+    };  
     
-    cardFooter.drag(refresh);        
+    dragula([document.getElementById("el-1"), document.getElementById("drop-1")], {revertOnSpill: true}).on('drop',refresh)
+    
 }
+
+
 
 
 

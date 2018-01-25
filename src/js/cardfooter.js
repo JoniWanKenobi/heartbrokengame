@@ -5,12 +5,12 @@ function CardFooter(cardElement, createFunction, puzzleWidth, cellWidth, rowLeng
     self.cellWidth = 60;
     self.rowLength = rowLength;
     self.createFunction = createFunction;    
-    self.pieces = self.createPiecesArray();  
-    self.drags = self.createDrags();  
+    self.pieces = self.createPiecesArray(); 
+   
+    
     
     //DOM elements
-    self.cardElement = cardElement;   
-    
+    self.cardElement = cardElement;      
     self.currentElementDragFunction;
     
 }
@@ -18,6 +18,7 @@ function CardFooter(cardElement, createFunction, puzzleWidth, cellWidth, rowLeng
 
 CardFooter.prototype.mountCardFooter = function(){
     var self = this;
+    // self.shiftedPiece = self.pieces.shift();
     var pieceElement = self.pieces.shift();
     var cardFooterElement = self.createFunction('<div class="card-footer"></div>');
     var piecesElement = self.createFunction('<div class="pieces"></div>');
@@ -26,9 +27,6 @@ CardFooter.prototype.mountCardFooter = function(){
     self.cardElement.appendChild(cardFooterElement);  
 }
 
-CardFooter.prototype.drag = function(doSomething){
-    return dragula([document.getElementById("el-1"), document.getElementById("drop-1")], {revertOnSpill: true}).on('drop',doSomething);
-}
 
 CardFooter.prototype.refreshCardFooter = function(){
     var self = this;
@@ -45,7 +43,7 @@ CardFooter.prototype.removeItself = function(){
 }
 
 CardFooter.prototype.createPiece = function(i,j, id){
-    var self = this;
+    var self = this;    
     var positionString = 'background-position: ' + i +'px' + ' ' + j + 'px'; 
     var pieceElement = document.createElement('div');
     pieceElement.setAttribute('class', 'jigsaw-img piece');
@@ -53,7 +51,7 @@ CardFooter.prototype.createPiece = function(i,j, id){
 
     var idElement = document.createElement('div');
     idElement.setAttribute('id', 'el-'+ (id + 1));
-    idElement.appendChild(pieceElement);
+    idElement.appendChild(pieceElement);      
 
     return idElement;
 }
