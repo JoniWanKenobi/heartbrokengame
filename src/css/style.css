@@ -98,8 +98,7 @@ h3 {}
 
 .pieces{
   flex: 1 0 40;
-  /* border: 1px solid black; */
-  /* height: 80px; */
+ 
 }
 
 .piece{
@@ -147,9 +146,7 @@ h3 {}
   color: blueviolet;
 }
 
-/* .fa-heart {
-  color:#E4287C;
-} */
+
 .fa-bolt {
   top:-5%;
   left:2%;
@@ -168,7 +165,7 @@ h3 {}
 /* ---- components ---- */
 
 
-
+/* dragula css */
 .gu-mirror {
   position: fixed !important;
   margin: 0 !important;

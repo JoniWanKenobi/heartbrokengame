@@ -5,9 +5,7 @@ function CardFooter(cardElement, createFunction, puzzleWidth, cellWidth, rowLeng
     self.cellWidth = 60;
     self.rowLength = rowLength;
     self.createFunction = createFunction;    
-    self.pieces = self.createPiecesArray(); 
-   
-    
+    self.pieces = self.createPiecesArray();    
     
     //DOM elements
     self.cardElement = cardElement;      
@@ -17,14 +15,14 @@ function CardFooter(cardElement, createFunction, puzzleWidth, cellWidth, rowLeng
 
 
 CardFooter.prototype.mountCardFooter = function(){
-    var self = this;
-    // self.shiftedPiece = self.pieces.shift();
+    var self = this;    
     var pieceElement = self.pieces.shift();
     var cardFooterElement = self.createFunction('<div class="card-footer"></div>');
     var piecesElement = self.createFunction('<div class="pieces"></div>');
     piecesElement.appendChild(pieceElement);
     cardFooterElement.appendChild(piecesElement);
     self.cardElement.appendChild(cardFooterElement);  
+    console.log(self.pieces);
 }
 
 
@@ -59,11 +57,10 @@ CardFooter.prototype.createPiece = function(i,j, id){
 CardFooter.prototype.createPiecesArray = function(){
     var self = this;
     var arr = [];
-    for(var i=0; i<=self.puzzleWidth-self.cellWidth; i+=self.cellWidth){        
-        for(var j=0; j<=self.puzzleWidth-self.cellWidth; j+=self.cellWidth){
-            var piece = self.createPiece(i,j,arr.length);
-            arr.push(piece); 
-            // arr.push([i,j]);           
+    for(var i=self.puzzleWidth; i>=self.cellWidth; i-=self.cellWidth){        
+        for(var j=self.puzzleWidth; j>=self.cellWidth; j-=self.cellWidth){
+            var piece = self.createPiece(j,i,arr.length);
+            arr.push(piece);           
         }
     }    
 
