@@ -28,15 +28,18 @@ function Game(app, createFunction, puzzleSize, puzzleWidth, imageURL) {
 
 Game.prototype.build = function(){
     var self = this;
-    var puzzleElement = self.buildPuzzle();
-    var boardElement = self.buildBoard();
+    self.app.appendChild(self.wrapperElement);
+    var puzzle = new Puzzle(self.wrapperElement, self.createFunction, self.puzzleSize);
+    puzzle.mount();
+    var board = new Board(self.wrapperElement, self.createFunction, self.puzzleWidth, self.cellWidth, self.rowLength)
+    board.mount();
     
-    self.wrapperElement.appendChild(puzzleElement);
-    self.wrapperElement.appendChild(boardElement);
+    // self.wrapperElement.appendChild(puzzleElement);
+    // self.wrapperElement.appendChild(boardElement);
   //   self.wrapperElement.appendChild(self.puzzleCardElement);
   //   self.wrapperElement.appendChild(self.boardElement);
-    app.appendChild(self.wrapperElement);
-    dragula([document.getElementById("el-1"), document.getElementById("drop-1")], {revertOnSpill: true});
+    
+    // dragula([document.getElementById("el-1"), document.getElementById("drop-1")], {revertOnSpill: true});
 }  
 
 
@@ -48,7 +51,7 @@ Game.prototype.buildPuzzle = function(){
 
 Game.prototype.buildBoard = function(){
     var self = this;
-    var board = new Board(self.createFunction, self.puzzleWidth, self.cellWidth, self.rowLength)
+    var board = new Board(self.wrapperElement, self.createFunction, self.puzzleWidth, self.cellWidth, self.rowLength)
     return board.buildElement();
 }
 

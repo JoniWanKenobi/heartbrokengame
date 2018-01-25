@@ -4,13 +4,14 @@ function CardFooter(cardElement, createFunction, puzzleWidth, cellWidth, rowLeng
     self.puzzleWidth = 360;
     self.cellWidth = 60;
     self.rowLength = rowLength;
-    self.createFunction = createFunction;
-    // self.totalCells = (self.puzzleWidth/self.cellWidth)** don't need this because looping will give me 36 elements anyway
-    self.pieces = self.createPiecesArray();        
-    
+    self.createFunction = createFunction;    
+    self.pieces = self.createPiecesArray();  
+    self.drags = self.createDrags();  
     
     //DOM elements
-    self.cardElement = cardElement;
+    self.cardElement = cardElement;   
+    
+    self.currentElementDragFunction;
     
 }
 
@@ -22,7 +23,11 @@ CardFooter.prototype.mountCardFooter = function(){
     var piecesElement = self.createFunction('<div class="pieces"></div>');
     piecesElement.appendChild(pieceElement);
     cardFooterElement.appendChild(piecesElement);
-    self.cardElement.appendChild(cardFooterElement);
+    self.cardElement.appendChild(cardFooterElement);  
+}
+
+CardFooter.prototype.drag = function(doSomething){
+    return dragula([document.getElementById("el-1"), document.getElementById("drop-1")], {revertOnSpill: true}).on('drop',doSomething);
 }
 
 CardFooter.prototype.refreshCardFooter = function(){
@@ -49,6 +54,7 @@ CardFooter.prototype.createPiece = function(i,j, id){
     var idElement = document.createElement('div');
     idElement.setAttribute('id', 'el-'+ (id + 1));
     idElement.appendChild(pieceElement);
+
     return idElement;
 }
 

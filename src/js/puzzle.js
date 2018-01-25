@@ -1,7 +1,8 @@
 'use strict'
 
-function Puzzle(createFunction, puzzleSize){
+function Puzzle(wrapperElement, createFunction, puzzleSize){
     var self = this;
+    self.wrapperElement = wrapperElement;
     self.puzzleSize = puzzleSize;
 
     //Baseline DOM elements
@@ -10,7 +11,7 @@ function Puzzle(createFunction, puzzleSize){
 }
 
 
-Puzzle.prototype.buildElement = function(){
+Puzzle.prototype.mount = function(){
     var self = this;
     for(var i=1; i<=self.puzzleSize; i++){
         var cellElement = document.createElement('div');
@@ -19,5 +20,5 @@ Puzzle.prototype.buildElement = function(){
         self.cardBodyElement.appendChild(cellElement);
     }
     self.puzzleCardElement.appendChild(self.cardBodyElement);
-    return self.puzzleCardElement;
+    self.wrapperElement.appendChild(self.puzzleCardElement);
   }

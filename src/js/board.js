@@ -1,4 +1,4 @@
-function Board(createFunction, puzzleWidth, cellWidth, rowLength){
+function Board(wrapperElement, createFunction, puzzleWidth, cellWidth, rowLength){
     var self = this;    
     self.createFunction = createFunction;
     self.puzzleWidth = puzzleWidth;
@@ -9,6 +9,7 @@ function Board(createFunction, puzzleWidth, cellWidth, rowLength){
     self.boardElement = createFunction('<div class="board"></div>');
     self.patElement = createFunction('<div class="pat"></div>');
     self.cardElement = createFunction('<div class="card"></div>'); 
+    self.wrapperElement = wrapperElement;
         
     //Debugging
     self.nextButton = document.createElement('button');
@@ -16,25 +17,31 @@ function Board(createFunction, puzzleWidth, cellWidth, rowLength){
     
 }
 
-Board.prototype.buildElement = function(){
-    var self = this;    
+Board.prototype.mount = function(){
+    var self = this;
+        
     var cardBody = new Message(self.cardElement, self.createFunction);
     cardBody.mountCardBody();
+
     var cardFooter = new CardFooter(self.cardElement, self.createFunction, self.puzzleWidth, self.cellWidth, self.rowLength)
     cardFooter.mountCardFooter();
-    console.log(cardFooter.pieces);
+
     self.patElement.appendChild(self.cardElement);
     self.boardElement.appendChild(self.patElement);
+    self.wrapperElement.appendChild(self.boardElement);
+
     var refresh = function(){
         cardBody.refreshMessage();
         cardFooter.refreshCardFooter();
-        // footerRefresh();
     };
-    self.nextButton.addEventListener('click', refresh);
-    self.boardElement.appendChild(self.nextButton);
+
+    // self.nextButton.addEventListener('click', refresh);
+    // self.boardElement.appendChild(self.nextButton);
     
-    return self.boardElement;
+    cardFooter.drag(refresh);        
 }
+
+
 
 
 
