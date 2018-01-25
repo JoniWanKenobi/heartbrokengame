@@ -22,7 +22,7 @@ Message.prototype.slectIconElement = function(message){
     return iconElement;
 }
 
-Message.prototype.nextCardBody = function(){
+Message.prototype.mountCardBody = function(){
     var self = this;
     var message = messagesArray.shift(); //Gets due message form the array
     var boardCardBodyElement = self.createFunction('<div class="card-body"></div>');

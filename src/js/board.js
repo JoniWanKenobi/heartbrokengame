@@ -19,8 +19,9 @@ function Board(createFunction, puzzleWidth, cellWidth, rowLength){
 Board.prototype.buildElement = function(){
     var self = this;    
     var cardBody = new Message(self.cardElement, self.createFunction);
-    cardBody.nextCardBody();
-    var cardFooter = new CardFooter(self.createFunction, self.puzzleWidth, self.cellWidth, self.rowLength)
+    cardBody.mountCardBody();
+    var cardFooter = new CardFooter(self.cardElement, self.createFunction, self.puzzleWidth, self.cellWidth, self.rowLength)
+    cardFooter.mountCardFooter();
     console.log(cardFooter.pieces);
     self.patElement.appendChild(self.cardElement);
     self.boardElement.appendChild(self.patElement);
