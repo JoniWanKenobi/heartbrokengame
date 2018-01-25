@@ -22,7 +22,7 @@
         <div class="wrapper">
             <div class="puzzle card">
                 <div class="card-body">
-                    <div class="drop"></div>
+                    <div id="drop-1" class="drop"></div>
                     <div class="drop"></div>
                     <div class="drop"></div>
                     <div class="drop"></div>
@@ -69,12 +69,13 @@
                             <div class="blockquote">
                                 <p class="card-text">If you love someone, set them free. If they come back they're yours; if they don't they never were.</p>   
                                 <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-                            </div>                
-                                        
+                            </div>                                           
                         </div>
                         <div class="card-footer">
                             <div class="pieces">
-                                <div class="jigsaw-img piece piece1"></div>                    
+                                <div id="el-1">
+                                    <div class="jigsaw-img piece piece1"></div>
+                                </div>                                                    
                             </div>
                         </div>
                     </div>
@@ -93,4 +94,6 @@
         </div>
      </div>     
  </div>
+ <script src='https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.js'></script>
+ <script>dragula([document.getElementById("el-1"), document.getElementById("drop-1")], {revertOnSpill: true});</script>
 </body>

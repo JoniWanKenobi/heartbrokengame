@@ -83,3 +83,6 @@ Message.prototype.removeItself = function(){
         <footer class="blockquote-footer">Someone famous</footer>
     </div>                                           
 </div> */
+
+
+
