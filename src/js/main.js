@@ -1,5 +1,7 @@
 'use strict';
 
+
+
 function main(){
 
     var splashHTML ='<div class=\"container\"><div class=\"wrapper\"><div class=\"img-block\"><img src=\"../src/images/SplashHeart.png\" alt=\"\"></div><div class=\"text-block\"><h2>Broken heart?</h2><h2>This game will fix it.</h2><h4>One piece at the time.</h4><button id=\"start-btn\" class=\"start-btn btn btn-outline-danger\">Start</button></div></div></div>'
@@ -22,11 +24,11 @@ function main(){
     };
 
     function createElementFromHTML(htmlString) {
-        var div = document.createElement('div');
-        div.innerHTML = htmlString.trim();
-      
-        // Change this to div.childNodes to support multiple top-level nodes
-        return div.firstChild; 
+      var div = document.createElement('div');
+      div.innerHTML = htmlString.trim();
+    
+      // Change this to div.childNodes to support multiple top-level nodes
+      return div.firstChild; 
     }
   
     function buildSplash() {
