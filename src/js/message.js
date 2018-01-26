@@ -5,19 +5,17 @@ function Message(cardElement, createFunction){
     self.createFunction = createFunction;
 
     //Baseline DOM elements
-    self.cardElement = cardElement;
-        
-    
+    self.cardElement = cardElement;   
 }
 
 Message.prototype.slectIconElement = function(message){
     var self = this;
     var iconElement = document.createElement('img');
     if(message.gender === 'M'){
-        iconElement.setAttribute('src', './images/user.svg');
+        iconElement.setAttribute('src', './src/images/user.svg');
     }
     else {
-        iconElement.setAttribute('src', './images/user-female.svg');
+        iconElement.setAttribute('src', './src/images/user-female.svg');
     }
     return iconElement;
 }

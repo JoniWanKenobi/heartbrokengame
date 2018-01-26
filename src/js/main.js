@@ -4,7 +4,7 @@
 
 function main(){
 
-    var splashHTML ='<div class=\"container\"><div class=\"wrapper\"><div class=\"img-block\"><img src=\"../src/images/SplashHeart.png\" alt=\"\"></div><div class=\"text-block\"><h2>Broken heart?</h2><h2>This game will fix it.</h2><h4>One piece at the time.</h4><button id=\"start-btn\" class=\"start-btn btn btn-outline-danger\">Start</button></div></div></div>'
+    var splashHTML ='<div class=\"container\"><div class=\"wrapper\"><div class=\"img-block\"><img src=\"./src/images/SplashHeart.png\" alt=\"\"></div><div class=\"text-block\"><h2>Broken heart?</h2><h2>This game will fix it.</h2><h4>One piece at the time.</h4><button id=\"start-btn\" class=\"start-btn btn btn-outline-danger\">Start</button></div></div></div>'
     var splashElement = createElementFromHTML(splashHTML);
     var title = document.querySelector('h1');
     var app = document.querySelector('#app');  
@@ -13,7 +13,7 @@ function main(){
     var PUZZLE_SIZE = 36;
     var PUZZLE_WIDTH = 360;
     var IMAGE_NAME = 'bansky-heart.jpg';
-    var imageURL = './src/images/'+IMAGE_NAME;
+    var imageURL = '../src/images/'+IMAGE_NAME;
       
     // -- SPLASH
     
