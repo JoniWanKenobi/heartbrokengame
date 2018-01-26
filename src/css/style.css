@@ -153,6 +153,10 @@ h3 {}
   font-size:70%;
 }
 
+.gameover-card .card-footer{
+  text-align: center;
+}
+
 #site-header {}
  
 #site-footer {}

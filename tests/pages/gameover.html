@@ -3,12 +3,57 @@
  
 <head>
     <title>Hello, world!</title>
- <meta charset='utf-8'>
- <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel='stylesheet' href='../../src/css/style.css'>
+    <script src="https://use.fontawesome.com/f22f21b6f3.js"></script>
 </head>
  
 <body>
- <h1>Hello World</h1>
+ <div class="navbar">
+     <div class="container navbar-container">
+        <a class="navbar-brand" href="#">Heartbroken <img src="../../src/images/SplashHeart.png" alt=""></a>
+               
+     </div>     
+ </div>
+ <div class="main">
+    <div class="container">
+        <div class="wrapper">
+            <div class="card">
+                <div class="card-body">
+                    <img class="card-img" src="../../src/images/bansky-heart.jpg" alt="">                    
+                </div>  
+                <div class="card-footer">
+                    <p><em>Bansky, "Ballon girl"</em></p>                 
+                </div>              
+            </div>            
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title"><strong>Congratulations!!</strong></h2>
+                    <h4>And now that your heart is fixed...</h4>
+                    <h4><strong>...it's time to use it again!!</strong></h4>                                                                   
+                </div>
+                <div class="card-footer">
+                    <div class="blockquote">
+                        <p class="card-text">"If you don't used, you lose it."</p>   
+                        <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+                    </div>    
+                </div>
+            </div>                
+        </div> <!-- end of wrapper class -->
+    </div> <!-- end of container class -->
+ </div> 
+ <div class="footer text-muted">    
+     <div class="container footer-wrapper">
+        <div class="footer-element">
+                <p><span><img class="footer-logo" src="../../src/images/ironhackLogo.jpg"> </span> Ironhack - Barcelona</p>
+        </div>
+        <div class="footer-element">
+            <p><em>Coded by</em><i class="fa fa-github fa-2x"></i><strong>JoniWanKenobi</strong></p>
+        </div>
+     </div>     
+ </div>
+ <script src='https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.js'></script>
+ <script>dragula([document.getElementById("el-1"), document.getElementById("drop-1")], {revertOnSpill: true});</script>
 </body>
