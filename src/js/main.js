@@ -92,7 +92,7 @@ function main(){
       gameOverElement.appendChild(imgCard);
 
       var msgCardBody = createElementFromHTML('<div class="card-body">\
-                  <h2 class="card-title"><strong>Congratulations!!</strong></h2>\
+                  <h2 class="card-title"><strong>Congratulations!! The last piece is only up to you!!</strong></h2>\
                   <h4>And now that your heart is fixed...</h4>\
                   <h4><strong>...it\'s time to use it again!!</strong></h4></div>');
       
