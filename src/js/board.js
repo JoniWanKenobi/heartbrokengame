@@ -11,44 +11,47 @@ function Board(wrapperElement, createFunction, puzzleWidth, cellWidth, rowLength
     self.cardElement = createFunction('<div class="card"></div>'); 
     self.wrapperElement = wrapperElement;
         
-    //Debugging
-    self.nextButton = document.createElement('button');
-    self.nextButton.innerText = 'Next message';
+    //Inner objects
+    self.cardBody = new Message(self.cardElement, self.createFunction);
+    self.cardFooter = new CardFooter(self.cardElement, self.createFunction, self.puzzleWidth, self.cellWidth, self.rowLength);
     
+    //Counter
+    self.counter = 34;
 }
 
 Board.prototype.mount = function(){
     var self = this;
-    var counter = 2;
-    
     var boardElement = self.createFunction('<div class="board"></div>');
     
-    var cardBody = new Message(self.cardElement, self.createFunction);
-    cardBody.mountCardBody();
-
-    var cardFooter = new CardFooter(self.cardElement, self.createFunction, self.puzzleWidth, self.cellWidth, self.rowLength)
-    cardFooter.mountCardFooter();
+    
+    self.cardBody.mountCardBody();    
+    self.cardFooter.mountCardFooter();
 
     self.patElement.appendChild(self.cardElement);
     boardElement.appendChild(self.patElement);
     self.wrapperElement.appendChild(boardElement);
 
-    var refresh = function(){
-        if(counter<=36){
-            cardBody.refreshMessage();        
-            cardFooter.refreshCardFooter();
-        }
-        
-        var num = cardFooter.pieceNumber;
-        dragula([document.getElementById("el-"+ num), document.getElementById("drop-"+ num)], {revertOnSpill: true})
-        .on('drop',refresh);
-                
-        counter ++;
-    };  
+    // self.moveThings();    
     
-    var num = cardFooter.pieceNumber;
-    dragula([document.getElementById("el-"+ num), document.getElementById("drop-"+ num)], {revertOnSpill: true}).on('drop',refresh)
-    
+}
+
+Board.prototype.refresh = function(){
+    var self = this;
+    self.cardBody.refreshMessage();        
+    self.cardFooter.refreshCardFooter();  
+
+    // var refresh = function(){        
+    //     self.cardBody.refreshMessage();        
+    //     self.cardFooter.refreshCardFooter();       
+    //     var num = self.cardFooter.pieceNumber;
+    //     dragula([document.getElementById("el-"+ num), document.getElementById("drop-"+ num)], {revertOnSpill: true})
+    //     .on('drop',refresh);                
+    //     self.counter ++;
+    // };  
+
+    // if(self.counter === 34){
+    //     refresh();
+    // }
 }
 
 

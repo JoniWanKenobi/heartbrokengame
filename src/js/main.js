@@ -25,8 +25,7 @@ function main(){
 
     function createElementFromHTML(htmlString) {
       var div = document.createElement('div');
-      div.innerHTML = htmlString.trim();
-    
+      div.innerHTML = htmlString.trim();    
       // Change this to div.childNodes to support multiple top-level nodes
       return div.firstChild; 
     }
@@ -53,8 +52,13 @@ function main(){
     //     destroyGame();
     //     buildGameOver();
     //   }, 5000);
+      game.onGameover(function(){
+        destroyGame();
+        buildGameOver();
+      });
     }
-  
+    
+
     function destroyGame() {
       game.destroy();
     }

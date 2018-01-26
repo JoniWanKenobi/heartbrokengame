@@ -8,25 +8,28 @@ function CardFooter(cardElement, createFunction, puzzleWidth, cellWidth, rowLeng
     self.pieces = self.createPiecesArray();   
     self.pieceNumber = 0;
 
-    
     //DOM elements
     self.cardElement = cardElement;      
-    self.currentElementDragFunction;
+    
     
 }
 
 
 CardFooter.prototype.mountCardFooter = function(){
-    var self = this;    
+    var self = this;  
+    console.log('PIECES BEFORE SHIFTING: ', self.pieces);  
     var pieceElement = self.pieces.shift();
-    var elementId = pieceElement.id;
-    self.pieceNumber = Number(elementId.split('-')[1]);
-    var cardFooterElement = self.createFunction('<div class="card-footer"></div>');
-    var piecesElement = self.createFunction('<div class="pieces"></div>');
-    piecesElement.appendChild(pieceElement);
-    cardFooterElement.appendChild(piecesElement);
-    self.cardElement.appendChild(cardFooterElement);  
-    console.log(self.pieces);
+    if(pieceElement != null){
+        var elementId = pieceElement.id;
+        self.pieceNumber = Number(elementId.split('-')[1]);
+        var cardFooterElement = self.createFunction('<div class="card-footer"></div>');
+        var piecesElement = self.createFunction('<div class="pieces"></div>');
+        piecesElement.appendChild(pieceElement);
+        cardFooterElement.appendChild(piecesElement);
+        self.cardElement.appendChild(cardFooterElement);  
+    }    
+    
+    // console.log(self.pieces);
 }
 
 
@@ -67,9 +70,7 @@ CardFooter.prototype.createPiecesArray = function(){
             arr.push(piece);           
         }
     }    
-
-    return self.shuffle(arr);
-    // return arr;
+    return self.shuffle(arr);    
 }
 
 
