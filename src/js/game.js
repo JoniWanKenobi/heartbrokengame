@@ -17,8 +17,6 @@ function Game(app, createFunction, puzzleSize, puzzleWidth, imageURL) {
     self.app = app;
     self.wrapperElement = createFunction('<div class="wrapper"></div>');
     
-    //Data
-
     
       
 }

@@ -84,28 +84,25 @@ var defaultData = {
 var messagesArray = [];
 
 function createMessagesArray(arr){
-
+    var notShuffled = [];
     arr.forEach(function(element){
         var message = new CheerUpMessage(element[0], element[1], element[2], element[3], element[4], element[5], element[6]);
-        messagesArray.push(message);
+        notShuffled.push(message);
     });
 
-    messagesArray.sort(function(a,b){
-        return b.rating - a.rating;
-    });
-
-
-    // CardFooter.prototype.shuffle = function (ar) {
-    //     // var copyArr = arr.slice();
-    //     var shuffledArr = [];
-    //     while(ar.length>0){
-    //         var ranNum = Math.floor(Math.random() * ar.length);
-    //         var el = ar.splice(ranNum,1)[0];
-    //         shuffledArr.push(el);
-    //     }
+    // messagesArray.sort(function(a,b){
+    //     return b.rating - a.rating;
+    // });
     
-    //     return shuffledArr;
-    // };
+    
+    while(notShuffled.length>0){
+        var ranNum = Math.floor(Math.random() * notShuffled.length);
+        var el = notShuffled.splice(ranNum,1)[0];
+        messagesArray.push(el);
+    }
+    
+       
+
     
 };
 

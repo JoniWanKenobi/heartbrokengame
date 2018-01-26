@@ -34,10 +34,15 @@ Board.prototype.mount = function(){
     self.wrapperElement.appendChild(boardElement);
 
     var refresh = function(){
-        cardBody.refreshMessage();
-        cardFooter.refreshCardFooter();
+        if(counter<=36){
+            cardBody.refreshMessage();        
+            cardFooter.refreshCardFooter();
+        }
+        
         var num = cardFooter.pieceNumber;
-        dragula([document.getElementById("el-"+ num), document.getElementById("drop-"+ num)], {revertOnSpill: true}).on('drop',refresh);
+        dragula([document.getElementById("el-"+ num), document.getElementById("drop-"+ num)], {revertOnSpill: true})
+        .on('drop',refresh);
+                
         counter ++;
     };  
     
