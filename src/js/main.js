@@ -69,7 +69,9 @@ function main(){
     var playAgainButton;
     var handlePlayAgainClick = function () {
       destroyGameOver();
+      mySound = new Audio('./music/lovesong.mp3');
       buildGame();
+      mySound.play();
     };
   
     function buildGameOver() {

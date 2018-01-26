@@ -21,7 +21,7 @@ function Game(app, createFunction, puzzleSize, puzzleWidth, imageURL) {
     self.puzzle =  new Puzzle(self.wrapperElement, self.createFunction, self.puzzleSize);
     self.board = new Board(self.wrapperElement, self.createFunction, self.puzzleWidth, self.cellWidth, self.rowLength);
 
-    self.counter = 1;
+    self.counter = 0;
     self.onEnded;
 }
 
@@ -49,14 +49,14 @@ Game.prototype.play = function(){
         self.checkEnd();
     };
 
-    if(self.counter === 1){
+    if(self.counter === 0){
         refresh();
     }
 }
 
 Game.prototype.checkEnd = function(){
     var self = this;
-    if(self.counter > 36){
+    if(self.counter >= 36){
         self.onEnded();
     }
 
