@@ -1,6 +1,7 @@
+'use strict';
+
 function CardFooter(cardElement, createFunction, puzzleWidth, cellWidth, rowLength){
     var self = this;
-
     self.puzzleWidth = 360;
     self.cellWidth = 60;
     self.rowLength = rowLength;
@@ -9,15 +10,47 @@ function CardFooter(cardElement, createFunction, puzzleWidth, cellWidth, rowLeng
     self.pieceNumber = 0;
 
     //DOM elements
-    self.cardElement = cardElement;      
-    
-    
-}
+    self.cardElement = cardElement;   
+};
 
+CardFooter.prototype.createPiecesArray = function(){ //Creates an array of DOM elements representing the puzzle pieces;
+    var self = this;
+    var arr = [];
+    for(var i=self.puzzleWidth; i>=self.cellWidth; i-=self.cellWidth){        
+        for(var j=self.puzzleWidth; j>=self.cellWidth; j-=self.cellWidth){
+            var piece = self.createPiece(j,i, arr.length);
+            arr.push(piece);           
+        }
+    }    
+    return self.shuffle(arr);    
+};
 
-CardFooter.prototype.mountCardFooter = function(){
-    var self = this;  
-    console.log('PIECES BEFORE SHIFTING: ', self.pieces);  
+CardFooter.prototype.createPiece = function(i,j, id){
+    var self = this;    
+    var positionString = 'background-position: ' + i +'px' + ' ' + j + 'px'; 
+    var pieceElement = document.createElement('div'); //Actual puzzle piece with cropped image
+    pieceElement.setAttribute('class', 'jigsaw-img piece');
+    pieceElement.setAttribute('style', positionString);
+
+    var idElement = document.createElement('div'); //Wrapper element needed by dragula.js, will be later selected by id
+    idElement.setAttribute('id', 'el-'+ (id + 1));
+    idElement.appendChild(pieceElement);      
+
+    return idElement;
+};
+
+CardFooter.prototype.shuffle = function (ar) { //Just an array shuffle function
+    var shuffledArr = [];
+    while(ar.length>0){
+        var ranNum = Math.floor(Math.random() * ar.length);
+        var el = ar.splice(ranNum,1)[0];
+        shuffledArr.push(el);
+    }
+    return shuffledArr;
+};
+
+CardFooter.prototype.mountCardFooter = function(){//Mounts the card footer to the DOM
+    var self = this;    
     var pieceElement = self.pieces.shift();
     if(pieceElement != null){
         var elementId = pieceElement.id;
@@ -28,60 +61,19 @@ CardFooter.prototype.mountCardFooter = function(){
         cardFooterElement.appendChild(piecesElement);
         self.cardElement.appendChild(cardFooterElement);  
     }    
-    
-    // console.log(self.pieces);
 }
 
-
-CardFooter.prototype.refreshCardFooter = function(){
+CardFooter.prototype.refreshCardFooter = function(){//Remove, update, mount to DOM
     var self = this;
     self.removeItself();
     self.mountCardFooter();
 }
 
-CardFooter.prototype.removeItself = function(){
+CardFooter.prototype.removeItself = function(){//Remove from DOM
     var self = this;
-    console.log(self);
     var footer = self.cardElement.querySelector('.card-footer');
-    console.log(footer);
     footer.remove();
 }
 
-CardFooter.prototype.createPiece = function(i,j, id){
-    var self = this;    
-    var positionString = 'background-position: ' + i +'px' + ' ' + j + 'px'; 
-    var pieceElement = document.createElement('div');
-    pieceElement.setAttribute('class', 'jigsaw-img piece');
-    pieceElement.setAttribute('style', positionString);
-
-    var idElement = document.createElement('div');
-    idElement.setAttribute('id', 'el-'+ (id + 1));
-    idElement.appendChild(pieceElement);      
-
-    return idElement;
-}
-
-CardFooter.prototype.createPiecesArray = function(){
-    var self = this;
-    var arr = [];
-    for(var i=self.puzzleWidth; i>=self.cellWidth; i-=self.cellWidth){        
-        for(var j=self.puzzleWidth; j>=self.cellWidth; j-=self.cellWidth){
-            var piece = self.createPiece(j,i,arr.length);
-            arr.push(piece);           
-        }
-    }    
-    return self.shuffle(arr);    
-}
 
 
-CardFooter.prototype.shuffle = function (ar) {
-    // var copyArr = arr.slice();
-    var shuffledArr = [];
-    while(ar.length>0){
-        var ranNum = Math.floor(Math.random() * ar.length);
-        var el = ar.splice(ranNum,1)[0];
-        shuffledArr.push(el);
-    }
-
-    return shuffledArr;
-};

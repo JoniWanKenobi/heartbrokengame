@@ -30,7 +30,7 @@ Game.prototype.onGameover = function(callback){
     self.onEnded = callback;
 }
 
-Game.prototype.build = function(){
+Game.prototype.mount = function(){
     var self = this;
     self.app.appendChild(self.wrapperElement);    
     self.puzzle.mount();    
@@ -42,7 +42,7 @@ Game.prototype.play = function(){
     var self = this;
     var refresh = function(){        
         self.board.refresh();       
-        var num = self.board.cardFooter.pieceNumber;
+        var num = self.board.cardFooter.pieceNumber; 
         dragula([document.getElementById("el-"+ num), document.getElementById("drop-"+ num)], {revertOnSpill: true})
         .on('drop',refresh);                
         self.counter ++;
@@ -59,14 +59,9 @@ Game.prototype.checkEnd = function(){
     if(self.counter >= 36){
         self.onEnded();
     }
-
-    console.log('pieces: ', self.board.cardFooter.pieces)
-    console.log('piecenumber: ', self.board.cardFooter.pieceNumber);
-    console.log('counter: ', self.counter);
-
 }
 
-Game.prototype.destroy = function () {
+Game.prototype.unmount = function () {
     var self = this;  
     self.finished = true;
     self.wrapperElement.remove();

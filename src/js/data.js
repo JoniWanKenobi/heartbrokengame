@@ -1,6 +1,4 @@
-'use strict';
-
-  
+'use strict';  
 
 function CheerUpMessage(name, gender, city, message, rating, author){
     var self = this;

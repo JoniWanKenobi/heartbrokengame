@@ -8,28 +8,16 @@ function Message(cardElement, createFunction){
     self.cardElement = cardElement;   
 }
 
-Message.prototype.slectIconElement = function(message){
-    var self = this;
-    var iconElement = document.createElement('img');
-    if(message.gender === 'M'){
-        iconElement.setAttribute('src', './src/images/user.svg');
-    }
-    else {
-        iconElement.setAttribute('src', './src/images/user-female.svg');
-    }
-    return iconElement;
-}
-
 Message.prototype.mountCardBody = function(){
     var self = this;
-    var message = messagesArray.shift(); //Gets due message form the array
+    var message = messagesArray.shift(); //Gets due message form the array, which is in data.js
     var boardCardBodyElement = self.createFunction('<div class="card-body"></div>');
     
     //Title
     var iconElement = self.slectIconElement(message);
     var cardTitleElement = document.createElement('h5');
     cardTitleElement.setAttribute('class', 'card-title');
-    cardTitleElement.appendChild(iconElement);
+    cardTitleElement.innerHTML = iconElement;
     cardTitleElement.innerText = message.name;
 
     //Subtitle
@@ -55,8 +43,19 @@ Message.prototype.mountCardBody = function(){
     boardCardBodyElement.appendChild(cardTitleElement);
     boardCardBodyElement.appendChild(cardSubtitleElement);
     boardCardBodyElement.appendChild(quoteElement);
-
     self.cardElement.appendChild(boardCardBodyElement);
+}
+
+Message.prototype.slectIconElement = function(message){ //Selcts user's icon depending on gender;
+    var self = this;
+    var iconElement = document.createElement('img');
+    if(message.gender === 'M'){
+        iconElement.setAttribute('src', './src/images/user.svg');
+    }
+    else {
+        iconElement.setAttribute('src', './src/images/user-female.svg');
+    }
+    return iconElement;
 }
 
 Message.prototype.refreshMessage = function(){
